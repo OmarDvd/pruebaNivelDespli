@@ -1,17 +1,394 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+
+    <!--<link rel="stylesheet" type="text/css" href="css/styles.css">-->
+    <style>
+/* BODY */
+html{
+    background-color: whitesmoke;
+    font-family: Roboto, sans-serif;
+}
+body{
+    margin: 0;
+}
+/* CABECERA */
+
+#cabecera{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: purple;
+    color: white;
+    font-size: 24px;
+    /*font-family: ;*/
+}
+
+#titulo{
+    font-family: 'Sigmar';
+    font-size: 60px;
+    margin: 0px;
+    padding-bottom: 0px;
+}
+
+#segundo_titulo{
+    font-family: 'Sigmar';
+    margin: 0px;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+#contenido_principal{
+    max-width: 1193px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* MENU */
+
+#menu{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    background-color: orange;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+#desplegable{
+    display: flex;
+    flex-direction: column;
+}
+#labelfiltro{
+    
+    text-align: left;
+}
+#labelordenar{
+    text-align: left;
+}
+
+#filtro{
+    margin-bottom: 5px;
+}
+
+
+
+/* CONTENIDO CHAQUETA */
+
+#contenido_chaquetas{
+    display: flex;
+    flex-wrap: wrap;
+    
+    
+
+}
+img{
+    max-height: 170px;
+    max-width: 250px;
+}
+
+
+/* CHAQUETA */
+
+.precio{
+    color: #666;
+}
+
+.prueba{
+    font-size: 50px;
+}
+
+#contenido_chaquetas div{
+    background-color: white;
+    padding: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+
+#contenido_chaquetas p{
+margin: 2px;
+    padding: 2px;
+}
+
+
+    </style>
+    <script>
+
+window.onload=function(){
+// Preparamos nuestras funciones asociadas a elementos
+
+document.getElementById("filtro").onchange=funSelect;
+/*
+document.getElementById("fultimas_novedades").onchange=funUltimasNovedades;
+document.getElementById("fpromocion").onchange=funPromocion;
+*/
+
+}
+
+/* DEFINIMOS NUESTRAS FUNCIONES */
+
+function funSelect(){
+    var objetoSeleccionado=document.getElementById("filtro");
+    if(objetoSeleccionado.value==="novedad"){
+       
+        funNovedad();
+        
+    }else if(objetoSeleccionado.value==="ultimas_novedades"){
+      funUltimasNovedades();
+    }else if(objetoSeleccionado.value==="promocion"){
+funPromocion();
+
+    }else{
+        funTodas();
+        
+    }
+}
+
+function funTodas(){
+    var contenedorTodas=document.getElementsByClassName("todas");
+for(var i=0;i<contenedorTodas.length;i++){
+    contenedorTodas[i].style.display="flex";
+    console.log(contenedorTodas[i].value);
+}
+}
+
+/*
+function funNovedad(){
+    var contenedorTodas=document.getElementsByClassName("todas");
+    var contenedorNovedad=document.getElementsByClassName("novedad");
+for(var i=0;i<contenedorTodas.length;i++){
+    for(var k=0;k<contenedorNovedad.length;k++){
+        if(contenedorTodas[i]===contenedorNovedad[k]){
+            
+            contenedorNovedad[k].style.display="flex";
+        }else{
+            
+            contenedorNovedad[k].style.display="none";
+        }
+    }
+}
+}
+
+
+*/
+
+function funNovedad(){
+    funTodas()
+    var contenedorTodas=document.getElementsByClassName("todas");
+    var contenedorNovedad=document.getElementsByClassName("nonovedad");
+for(var i=0;i<contenedorTodas.length;i++){
+    for(var k=0;k<contenedorNovedad.length;k++){
+        if(contenedorTodas[i]===contenedorNovedad[k]){
+            
+            contenedorNovedad[k].style.display="flex";
+            
+        }else{
+            
+            contenedorNovedad[k].style.display="none";
+        }
+    }
+}
+}
+
+
+
+
+function funUltimasNovedades(){
+    funTodas()
+    var contenedorTodas=document.getElementsByClassName("todas");
+    var contenedorNovedad=document.getElementsByClassName("noultimas_novedades");
+for(var i=0;i<contenedorTodas.length;i++){
+    for(var k=0;k<contenedorNovedad.length;k++){
+        if(contenedorTodas[i]===contenedorNovedad[k]){
+            
+            contenedorNovedad[k].style.display="flex";
+            
+        }else{
+            
+            contenedorNovedad[k].style.display="none";
+        }
+    }
+}
+}
+
+
+function funPromocion(){
+    funTodas()
+    var contenedorTodas=document.getElementsByClassName("todas");
+    var contenedorNovedad=document.getElementsByClassName("nopromocion");
+for(var i=0;i<contenedorTodas.length;i++){
+    for(var k=0;k<contenedorNovedad.length;k++){
+        if(contenedorTodas[i]===contenedorNovedad[k]){
+            
+            contenedorNovedad[k].style.display="flex";
+            
+        }else{
+            
+            contenedorNovedad[k].style.display="none";
+        }
+    }
+}
+}
+
+
+    </script> 
+
+    <title>Examen 3º Evaluación</title>
 </head>
+
 <body>
-    <div class="container">
-       <div class="row">
-           <div class="col-md-6">Hello</div>
-           <div class="col-md-6">World!</div>
-       </div> 
+    <div id="cabecera">
+        <p id="titulo">
+            Entorno a ti
+        </p>
+        <p id="segundo_titulo">
+            Tu espacio no te define, tú defines tu espacio
+        </p>
     </div>
+    <div id="contenido_principal">
+
+        <div id="menu">
+            <div>
+                <p><strong>Setup</strong></p>
+            </div>
+            <div id="desplegable">
+                <label for="filtro" id="labelfiltro">FILTRAR POR</label>
+                <select id="filtro" name="filtroSelect" value="rtetre">
+                    <option id="ftodas" value="todas">Todos los Setups</option>
+                    <option id="fnovedad" value="novedad">Novedades</option>
+                    <option id="fultimas_novedades" value="ultimas_novedades">Últimas unidades</option>
+                    <option id="fpromocion" value="promocion">Promoción</option>
+                </select>
+                
+            </div>
+        </div>
+
+        <div id="contenido_chaquetas">
+            
+            <div id="chaqueta1" class="todas nonovedad noultimas_novedades nopromocion">
+                <img src="img/chaqueta-1.png" alt="chaqueta-1">
+                <p>1</p>
+                <p class="precio">109.99€</p>
+            </div>
+            <div id="chaqueta2" class="novedad todas noultimas_novedades nopromocion">
+                <img src="img/chaqueta-2.png" alt="chaqueta-2">
+                <p>2</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+            <div id="chaqueta3" class="todas nonovedad noultimas_novedades nopromocion">
+                <img src="img/chaqueta-3.png" alt="chaqueta-3">
+                <p>3</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+            <div id="chaqueta4" class="todas nonovedad noultimas_novedades nopromocion">
+                <img src="img/chaqueta-4.png" alt="chaqueta-4">
+                <p>4</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+            <div id="chaqueta5" class="ultimas_novedades todas nonovedad nopromocion">
+                <img src="img/chaqueta-5.png" alt="chaqueta-5">
+                <p>5</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+
+            <div id="chaqueta6" class="promocion todas nonovedad noultimas_novedades">
+                <img src="img/chaqueta-6.png" alt="chaqueta-6">
+                <p>6</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+
+            <div id="chaqueta7" class="todas nonovedad noultimas_novedades nopromocion">
+                <img src="img/chaqueta-7.png" alt="chaqueta-7">
+                <p>7</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+
+            <div id="chaqueta8" class="promocion todas nonovedad noultimas_novedades">
+                <img src="img/chaqueta-8.png" alt="chaqueta-8">
+                <p>8</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+
+            <div id="chaqueta9" class="todas nonovedad noultimas_novedades nopromocion">
+                <img src="img/chaqueta-9.png" alt="chaqueta-9">
+                <p>9</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+            <div id="chaqueta10" class="promocion todas nonovedad noultimas_novedades">
+                <img src="img/chaqueta-10.png" alt="chaqueta-10">
+                <p>Chaqueta Invierno 10</p>
+                <p class="precio">109.99€</p>
+            </div>
+
+
+            <div id="chaqueta11" class="todas nonovedad noultimas_novedades nopromocion">
+                <img src="img/chaqueta-11.png" alt="chaqueta-11">
+                <p>Chaqueta Invierno 11</p>
+                <p class="precio">109.99€</p>
+            </div>
+            
+
+<div class="todas">
+                
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">Esperamos que encuentres lo que buscas</div>
+            <div class="col-md-6"><strong>Te esperamos</strong></div>
+        </div> 
+
+
 </body>
+
 </html>
